@@ -40,3 +40,21 @@ func handle_input(delta):
 	if(direction_vector==Vector2()):
 		velocity.move_toward(Vector2(),500*delta)
 	velocity=move_and_slide(velocity)
+	
+
+func fsm():
+	match current_state:
+		states.Idle:
+			if direction_vector!=Vector2():
+				return states.Run
+		states.Run:
+			if direction_vector==Vector2():
+				return states.Idle
+		
+
+
+
+
+func is_aiming():
+	return (Input.is_action_pressed("Right_click"))
+
